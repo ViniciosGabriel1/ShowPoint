@@ -13,6 +13,16 @@
 <div class="container-fluid">
     <!--  Row 1 -->
     <div class="row">
+      {{-- @php
+    $sessionData = session()->all();
+    dd($sessionData);
+@endphp --}}
+@if(Auth::check())
+    <p>Olá, {{ Auth::user()->name }}!</p>
+@else
+    <p>Usuário não autenticado.</p>
+@endif
+
       <div class="col-sm-6 col-xl-3">
         <div class="card overflow-hidden rounded-2">
           <div class="position-relative">

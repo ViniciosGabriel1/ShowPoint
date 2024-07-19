@@ -27,7 +27,9 @@ class LoginController extends Controller
             return redirect('home');
         }
 
-        return response()->json(['success' => false, 'message' => 'The provided credentials do not match our records.'], 422);
+        return redirect('login')->with('error', 'Dados não conferem');
+
+        // return response()->json(['success' => false, 'message' => 'The provided credentials do not match our records.'], 422);
     }
 
 
@@ -37,6 +39,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login')->with('logout', 'Você deslogou com sucesso !');
     }
 }
